@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+ {% load static %}
+ {% block title%}
+    Addpost
+ {% endblock title %}
+ {% block content %}
+ <div class="col-sm-10">
+ <h2 class="my-5">Addpost</h2>
+ <form action="" method="POST", enctype="multipart/form-data">
+    {% csrf_token %}
+   {{form.as_p}}
+   
+   
+    <input type="submit" class='btn btn-primary' value="update">
+    <a href="{% url 'dashboard' %}" class="btn btn-primary">cancel</a>
+ </form>
+ {% endblock content %}
+

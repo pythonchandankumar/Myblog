@@ -1,0 +1,27 @@
+ {% extends "blog/base.html" %}
+ {% load static %}
+ {% block title%}
+     HOME
+ {% endblock title %}
+ {% block content %}
+ <div class="col-fluid">
+ <h2 class="my-2 bg-primary text-center">Read Our Blog</h2><br><br>
+ <div class="container">
+  <div class="row">
+   {% for post in posts %}
+   <div class="card mx-2 mt-2" style="width: 18rem;">
+    <a href="{% url 'detail' post.id %}"><img class="card-img-top" src="{{post.photo.url}}" alt="Card image cap"></a>
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+      <strong>Author:</strong>{{post.author}}<br>
+      <small><strong>Date:</strong>{{post.publication_date}}</small><br>
+      <a href="{% url 'detail' post.id %}" class="btn btn-primary">Read more</a>
+    </div>
+
+    
+  </div>
+    {% endfor %}
+</div>
+</div>
+ </div>
+ {% endblock content %}

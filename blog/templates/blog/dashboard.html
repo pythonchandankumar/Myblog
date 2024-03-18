@@ -1,0 +1,67 @@
+{% extends "blog/base.html" %}
+ {% load static %}
+ {% block title%}
+     Dashboard
+ {% endblock title %}
+          {% block msg %}
+                {% if messages %}
+                {% for message in messages %}
+                <span {% if message.tag %} class="alert-{{message}}" {% endif %} >
+                    {{message}}</span>
+                {% endfor %}
+                {% endif %}
+            {% endblock msg %}
+
+          {% block side%}
+          <div class="col-2 mt-5">
+              <h3 class="text-capitalize">{{user}}</h3>
+          </div>
+
+          {%endblock side%}
+ {% block content %}
+ <div class="col-sm-10">
+ <h2 class="my-5">Dashboard</h2>
+ <a href="{% url 'addpost' %}" class="btn btn-warning">Add post</a>
+ <h4 class="text-center alert alert-primary"> Show Blog information</h4>
+    {% if posts %}
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>id </th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>img</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        {% for st in posts %}
+        <tbody>
+          <tr>
+            <th scope="row">{{st.id}}</th>
+            <td>{{st.title}}</td>
+            <td>{{st.content}}</td>
+            <td>{{st.author}}</td>
+            <td>{{st.photo}}</td>
+            <td>{{st.publication_date}}</td>
+            <td><a href="{% url 'update' st.id %}" class="btn btn-success">Edit</a>
+                {% if perms.miniblog.delete_post %}
+                <form action="{% url 'delete' st.id %}" method="POST" novalidate class="d-inline">
+                 {%csrf_token%}
+                <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
+            {% endif %}
+               </td>
+          </tr>
+        </tbody>
+        {% endfor %}
+        </table>
+    {% else %}
+    <h4 class="text-center alert alert-warning">No records</h4>
+
+    {%endif %}
+
+   
+ </div>
+ {% endblock content %}

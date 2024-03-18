@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    {{post.title}}
+{% endblock title %}
+
+{% block content %}
+<div class="mt-4">
+<h2 class="text-center">{{obj.title}}</h2><br>
+<div class="col-4 offset-3">
+<img src="{{obj.photo.url}}" height="200px" width="500" alt="MY IMG"></img><br><br>
+</div>
+ <p>{{obj.content}}</p>
+<div class="col">
+    <span>Author :</span><strong class="fw-bold">{{obj.author}}</strong>
+</div>
+<div class="col">
+<span>Date :</span><small class="fw-bold">{{obj.publication_date}}</small>
+</div>
+
+</div>
+{% endblock content %}

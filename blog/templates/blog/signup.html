@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+ {% load static %}
+ {% block title%}
+     signup
+ {% endblock title %}
+
+ {% block content %}
+ <div class="col-6 offset-3 mt-1">
+    <div class="card">
+        <div class="card-body">
+ <h2 class="my-5 text-center" style="text-decoration:underline;">signup</h2>
+            
+                <div class='col-9 offset-1'>
+        <form action="" method="POST" novalidate>
+            {% csrf_token%}
+            {% for fm in form %}
+            {{fm.label_tag }}{{fm}} <small class="text-danger">{{fm.errors|striptags}}</small><br>
+            {% endfor %}
+            <input type="submit" valu="submit" class="btn btn-primary">
+            {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <span class="text-danger">{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+            
+        </form>
+    </div>
+
+</div>
+</div>
+ </div>
+ {% endblock content %}
